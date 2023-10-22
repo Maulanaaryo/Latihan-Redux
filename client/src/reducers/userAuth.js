@@ -5,10 +5,10 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case "INIT_USER_INFO":
+    case "USER_INFO":
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
       return { ...state, userInfo: userInfo, isLoggedIn: true };
-    case "LOGIN":
+    case "AUTH":
       localStorage.setItem("userInfo", JSON.stringify(action.payload.userInfo));
       localStorage.setItem("isLoggedIn", true);
       return { ...state, userInfo: action.payload.userInfo, isLoggedIn: true };

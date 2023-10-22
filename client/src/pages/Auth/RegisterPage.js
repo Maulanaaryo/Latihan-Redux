@@ -26,12 +26,11 @@ const RegisterPage = () => {
 
       if (data) {
         dispatch({
-          type: "LOGIN",
+          type: "AUTH",
           payload: {
             userInfo: data,
           },
         });
-        localStorage.setItem("isLoggedIn", true);
         navigate("/");
       } else {
         console.error("Registration failed");

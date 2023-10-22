@@ -32,13 +32,11 @@ const LoginPage = () => {
           console.error("Invalid Password");
         } else {
           dispatch({
-            type: "LOGIN",
+            type: "AUTH",
             payload: {
               userInfo: user,
             },
           });
-          localStorage.setItem("isLoggedIn", true);
-          localStorage.setItem("userInfo", JSON.stringify(user)); // Simpan info user di local storage
           navigate("/");
         }
       }

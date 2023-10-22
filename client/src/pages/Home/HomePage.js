@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosting } from "../../actions/PostingAction";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const HomePage = () => {
@@ -8,10 +9,13 @@ const HomePage = () => {
     (state) => state.PostingReducer
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) navigate("/login");
     dispatch(getPosting());
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   return (
     <div className="home-page-container">

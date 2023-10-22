@@ -12,10 +12,10 @@ import {
 } from "../pages";
 import Navbar from "./Navbar";
 
-const MainContent = () => {
+const MainContent = ({ isLoggedIn }) => {
   return (
     <div>
-      <Navbar />
+      {isLoggedIn && <Navbar />}
       <div className="container">
         <Routes>
           <Route path="/" element={<HomePage />} />
