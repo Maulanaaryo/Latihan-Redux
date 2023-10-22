@@ -1,34 +1,30 @@
 {
-  "articles": [
+  "users": [
     {
       "id": 1,
-      "title": "Action",
-      "content": "genre action",
-      "posting": null
+      "username": "cek",
+      "password": "123"
     },
     {
-      "id": 2,
-      "title": "Drama",
-      "content": "genre drama",
-      "posting": 0
-    },
+      "username": "news",
+      "password": "123",
+      "id": 2
+    }
+  ],
+  "articles": [
     {
-      "id": 3,
-      "title": "Horor",
-      "content": "genre horor",
-      "posting": 0
+      "title": "New",
+      "image": "https://images.unsplash.com/photo-1683009427540-c5bd6a32abf6?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "content": "beautiful",
+      "posting": null,
+      "id": 6
     },
     {
       "title": "New",
-      "content": "New Card",
+      "image": "https://images.unsplash.com/photo-1682687982049-b3d433368cd1?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "content": "wow",
       "posting": 0,
-      "id": 4
-    },
-    {
-      "title": "New 2",
-      "content": "New Card 2",
-      "posting": 0,
-      "id": 5
+      "id": 7
     }
   ]
 }

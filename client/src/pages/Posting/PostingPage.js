@@ -4,7 +4,7 @@ import {
   deletePosting,
   detailPosting,
   getPosting,
-} from "../actions/PostingAction";
+} from "../../actions/PostingAction";
 import { Link } from "react-router-dom";
 
 const PostingPage = () => {
@@ -35,26 +35,29 @@ const PostingPage = () => {
             className="card mb-3 me-2"
             style={{ width: "13rem", marginTop: "20px" }}
           >
+            <img src={posting.image} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{posting.title}</h5>
               <p className="card-text">{posting.content}</p>
-              <p className="card-text">{posting.posting}</p>
-              <button
-                onClick={() => dispatch(deletePosting(posting.id))}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
+              <p className="card-text">
+                {posting.posting === 0 ? "Private" : "Public"}
+              </p>
               <Link
                 to={{
                   pathname: "/articles/update",
                 }}
                 onClick={() => dispatch(detailPosting(posting))}
                 className="btn btn-warning"
-                style={{ marginLeft: "10px" }}
               >
                 Update
               </Link>
+              <button
+                onClick={() => dispatch(deletePosting(posting.id))}
+                className="btn btn-danger"
+                style={{ marginLeft: "10px" }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))
@@ -67,10 +70,7 @@ const PostingPage = () => {
         className="card mb-3 me-3 text-center"
         style={{ width: "13rem", marginTop: "20px" }}
       >
-        <div
-          className="card-body d-flex justify-content-center align-items-center"
-          style={{ height: "100px" }}
-        >
+        <div className="card-body d-flex justify-content-center align-items-center">
           <Link to="/articles/add" className="btn btn-primary">
             Add Posting
           </Link>

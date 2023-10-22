@@ -1,9 +1,11 @@
-import HomePage from "./HomePage";
-import AboutPage from "./AboutPage";
-import ContactPage from "./ContactPage";
-import PostingPage from "./PostingPage";
-import AddPostingPage from "./AddPostingPage";
-import UpdatePostingPage from "./UpdatePostingPage";
+import HomePage from "./Home/HomePage";
+import AboutPage from "./About/AboutPage";
+import ContactPage from "./Contact/ContactPage";
+import PostingPage from "./Posting/PostingPage";
+import AddPostingPage from "./Posting/AddPostingPage";
+import UpdatePostingPage from "./Posting/UpdatePostingPage";
+import LoginPage from "./Auth/LoginPage";
+import RegisterPage from "./Auth/RegisterPage";
 
 export {
   HomePage,
@@ -12,4 +14,6 @@ export {
   PostingPage,
   AddPostingPage,
   UpdatePostingPage,
+  LoginPage,
+  RegisterPage,
 };

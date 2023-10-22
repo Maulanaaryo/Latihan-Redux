@@ -4,10 +4,11 @@ import {
   addPosting,
   getPosting,
   updatePosting,
-} from "../actions/PostingAction";
+} from "../../actions/PostingAction";
 
 const AddPostingPage = () => {
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [content, setContent] = useState("");
   const [posting, setPosting] = useState(0);
   const [id, setId] = useState("");
@@ -23,6 +24,7 @@ const AddPostingPage = () => {
       dispatch(
         updatePosting({
           id: id,
+          image: image,
           title: title,
           content: content,
           posting: posting,
@@ -30,7 +32,12 @@ const AddPostingPage = () => {
       );
     } else {
       dispatch(
-        addPosting({ title: title, content: content, posting: posting })
+        addPosting({
+          title: title,
+          image: image,
+          content: content,
+          posting: posting,
+        })
       );
     }
   };
@@ -39,6 +46,7 @@ const AddPostingPage = () => {
     if (addPostingResult) {
       dispatch(getPosting());
       setTitle("");
+      setImage("");
       setContent("");
       setPosting(0);
     }
@@ -48,6 +56,7 @@ const AddPostingPage = () => {
     if (detailPostingResult) {
       console.log("Masuk ke detail");
       setTitle(detailPostingResult.title);
+      setImage(detailPostingResult.image);
       setContent(detailPostingResult.content);
       setPosting(detailPostingResult.posting);
       setId(detailPostingResult.id);
@@ -58,6 +67,7 @@ const AddPostingPage = () => {
     if (updatePostingResult) {
       dispatch(getPosting());
       setTitle("");
+      setImage("");
       setContent("");
       setPosting(0);
       setId("");
@@ -85,6 +95,18 @@ const AddPostingPage = () => {
           />
         </div>
         <div className="mb-3">
+          <label htmlFor="image" className="form-label">
+            Image
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="image"
+            value={image}
+            onChange={(event) => setImage(event.target.value)}
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="content" className="form-label">
             Content
           </label>
@@ -106,8 +128,8 @@ const AddPostingPage = () => {
             value={posting}
             onChange={(event) => setPosting(parseInt(event.target.value))}
           >
-            <option value="public">Public</option>
-            <option value="private">Private</option>
+            <option value={1}>Public</option>
+            <option value={0}>Private</option>
           </select>
         </div>
         <button type="submit" className="btn btn-primary">
