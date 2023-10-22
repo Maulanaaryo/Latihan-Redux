@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Contact.css";
+import { useNavigate } from "react-router-dom";
 
 const ContactPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) navigate("/login");
+  }, [navigate]);
   return (
     <div className="contact-us">
       <div className="contact-form">
@@ -31,9 +38,7 @@ const ContactPage = () => {
               <input type="email" className="form-control" />
             </div>
             <div className="mb-3">
-              <label h className="form-label">
-                Name
-              </label>
+              <label className="h form-label">Name</label>
               <input type="text" className="form-control" />
             </div>
             <div className="mb-3">

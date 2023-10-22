@@ -7,14 +7,15 @@ import "./Login.css";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn) navigate("/");
+    if (isLoggedIn) {
+      navigate("/");
+    }
   }, [navigate]);
 
   const login = async (e) => {
@@ -24,11 +25,11 @@ const LoginPage = () => {
         `http://localhost:3000/users?username=${username}`
       );
       if (!data.length) {
-        setError("User not found");
+        console.error("User not found");
       } else {
         const user = data[0];
         if (user.password !== password) {
-          setError("Invalid password");
+          console.error("Invalid Password");
         } else {
           dispatch({
             type: "LOGIN",
@@ -37,6 +38,7 @@ const LoginPage = () => {
             },
           });
           localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("userInfo", JSON.stringify(user)); // Simpan info user di local storage
           navigate("/");
         }
       }
