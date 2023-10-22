@@ -1,27 +1,21 @@
 const initialState = {
   userInfo: {},
-  isLogin: false,
-};
-
-export const checkUserLogin = () => {
-  return {
-    type: "INIT_USERINFO",
-  };
+  isLoggedIn: false,
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case "INIT_USERINFO":
+    case "INIT_USER_INFO":
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      return { ...state, userInfo, isLogin: true };
+      return { ...state, userInfo: userInfo, isLoggedIn: true };
     case "LOGIN":
       localStorage.setItem("userInfo", JSON.stringify(action.payload.userInfo));
-      localStorage.setItem("isLogin", true);
-      return { ...state, userInfo: action.payload.userInfo, isLogin: true };
+      localStorage.setItem("isLoggedIn", true);
+      return { ...state, userInfo: action.payload.userInfo, isLoggedIn: true };
     case "LOGOUT":
       localStorage.removeItem("userInfo");
-      localStorage.removeItem("isLogin");
-      return { ...state, userInfo: {}, isLogin: false };
+      localStorage.removeItem("isLoggedIn");
+      return { ...state, userInfo: {}, isLoggedIn: false };
     default:
       return state;
   }

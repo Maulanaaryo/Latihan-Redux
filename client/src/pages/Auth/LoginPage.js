@@ -7,31 +7,38 @@ import "./Login.css";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLogin = localStorage.getItem("isLogin");
-    if (isLogin) navigate("/");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn) navigate("/");
   }, [navigate]);
 
   const login = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/users/login", {
-        username,
-        password,
-      });
-      if (response.data.success) {
-        dispatch({
-          type: "LOGIN",
-          payload: {
-            userInfo: response.data.user,
-          },
-        });
-        console.log(response.data);
-        navigate("/");
+      const { data } = await axios.get(
+        `http://localhost:3000/users?username=${username}`
+      );
+      if (!data.length) {
+        setError("User not found");
+      } else {
+        const user = data[0];
+        if (user.password !== password) {
+          setError("Invalid password");
+        } else {
+          dispatch({
+            type: "LOGIN",
+            payload: {
+              userInfo: user,
+            },
+          });
+          localStorage.setItem("isLoggedIn", true);
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error("Login error:", error);

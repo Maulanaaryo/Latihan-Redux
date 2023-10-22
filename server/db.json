@@ -9,6 +9,11 @@
       "username": "news",
       "password": "123",
       "id": 2
+    },
+    {
+      "username": "pewpew",
+      "password": "123",
+      "id": 3
     }
   ],
   "articles": [

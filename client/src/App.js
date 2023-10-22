@@ -1,23 +1,26 @@
 import { MainContent, Navbar } from "./components";
 import "bootstrap/dist/css/bootstrap.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import { checkUserLogin } from "./reducers/userAuth";
+import { LoginPage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
-  // const isLogin = useSelector((state) => state.isLogin);
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   useEffect(() => {
-    dispatch(checkUserLogin());
-  }, [dispatch]);
+    const checkToken = localStorage.getItem("isLoggedIn");
+    if (checkToken) {
+      dispatch({
+        type: "INIT_USER_INFO",
+      });
+      navigate("/");
+    }
+  }, [dispatch, navigate]);
 
-  return (
-    <div>
-      <Navbar />
-      <MainContent />
-    </div>
-  );
+  return <div>{isLoggedIn ? <MainContent /> : <LoginPage />}</div>;
 }
 
 export default App;

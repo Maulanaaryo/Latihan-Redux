@@ -12,8 +12,8 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isLogin = localStorage.getItem("isLogin");
-    if (isLogin) navigate("/");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn) navigate("/");
   }, [navigate]);
 
   const register = async (e) => {
@@ -28,14 +28,14 @@ const RegisterPage = () => {
         dispatch({
           type: "LOGIN",
           payload: {
-            userInfo: data.user,
+            userInfo: data,
           },
         });
+        localStorage.setItem("isLoggedIn", true);
         navigate("/");
       } else {
         console.error("Registration failed");
       }
-      console.log("Response Data:", data);
     } catch (error) {
       console.error("Registration error:", error);
     }
