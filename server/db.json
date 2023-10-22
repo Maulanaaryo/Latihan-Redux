@@ -1,0 +1,34 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Action",
+      "content": "genre action",
+      "posting": null
+    },
+    {
+      "id": 2,
+      "title": "Drama",
+      "content": "genre drama",
+      "posting": 0
+    },
+    {
+      "id": 3,
+      "title": "Horor",
+      "content": "genre horor",
+      "posting": 0
+    },
+    {
+      "title": "New",
+      "content": "New Card",
+      "posting": 0,
+      "id": 4
+    },
+    {
+      "title": "New 2",
+      "content": "New Card 2",
+      "posting": 0,
+      "id": 5
+    }
+  ]
+}
